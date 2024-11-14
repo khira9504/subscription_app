@@ -1,8 +1,8 @@
-import { LoginForm } from "@/app/components/auth/LoginForm";
+import { LoginForm } from "@/components/auth/LoginForm";
 import { getAuthSession } from "@/lib/nextauth";
 import { redirect } from "next/navigation";
 
-const page = async () => {
+export default async function page() {
   const session = await getAuthSession();
   if (session?.user) {
     redirect("/");
@@ -14,5 +14,3 @@ const page = async () => {
     </main>
   );
 };
-
-export default page;

@@ -1,6 +1,7 @@
 import { getAuthSession } from "@/lib/nextauth";
 import Link from "next/link";
 import React from "react";import { UserNavigation } from "../auth/UserNavigation";
+import { Button } from "../ui/button";
 
 export const Navigation = async () => {
   const session = await getAuthSession();
@@ -12,9 +13,14 @@ export const Navigation = async () => {
             CheckOUT
           </Link>
         </div>
-        <div>
+        <div className="flex items-center space-x-6">
           {session?.user ? (
-            <UserNavigation user={session.user} />
+            <>
+              <Button size={"sm"} asChild variant={"outline"}>
+                <Link href="/checkout">有料会員登録</Link>
+              </Button>
+              <UserNavigation user={session.user} />
+            </>
           ) : (
             <Link
               href="/login"
