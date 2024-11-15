@@ -1,3 +1,4 @@
+import Checkout from "@/components/checkout/Checkout";
 import { createCustomerId,  } from "@/feature/stripe/stripe";
 import { getAuthSession } from "@/lib/nextauth";
 import { redirect } from "next/navigation";
@@ -10,6 +11,8 @@ export default async function Page() {
   await createCustomerId({ userId: session.user.id });
 
   return (
-    <div>check out!</div>
+    <div>
+      <Checkout />
+    </div>
   );
 };
