@@ -2,6 +2,8 @@ import Stripe from "stripe";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import { getLevelFromMetadata } from "@/feature/stripe/stripe";
 import { Button } from "../ui/button";
+import { Suspense } from "react";
+import { Skeleton } from "../ui/skeleton";
 
 type SubscriptionItemProps = {
   price: Stripe.Price;
@@ -23,9 +25,11 @@ export default function SubscriptionItem({ price }: SubscriptionItemProps) {
         </div>
       </CardContent>
       <CardFooter className="mt-auto w-full">
-        <Button className="w-full cursor-pointer font-bold text-base" variant={buttonVariant} asChild>
-          <a>コースに登録する</a>
-        </Button>
+        <Suspense fallback={<Skeleton className="h-10 w-full" />}>
+          <Button className="w-full cursor-pointer font-bold text-base" variant={buttonVariant} asChild>
+            <a>コースに登録する</a>
+          </Button>
+        </Suspense>
       </CardFooter>
     </Card>
   )
